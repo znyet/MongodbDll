@@ -1,0 +1,19 @@
+db.getCollection('month12')
+.find(
+{
+    HttpMethod:"GET",
+    AddTime:
+    {
+        $gt:ISODate("2018-12-03"),  //时间大于
+        $lt:ISODate("2018-12-05")   //时间小于
+    }
+},
+{
+    _id:0,    //不返回id
+    Message:1 //返回Message字段
+    
+}
+)
+.skip(0)
+.limit(10)
+.sort({AddTime:-1})   //排序
