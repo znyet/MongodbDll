@@ -1,0 +1,40 @@
+db.inventory.find({})
+SELECT * FROM inventory
+
+db.inventory.find({ status: "D" })
+SELECT * FROM inventory WHERE status = "D"
+
+
+db.inventory.find( { status: { $in: [ "A", "D" ] } } )
+SELECT * FROM inventory WHERE status in ("A", "D")
+
+
+db.inventory.find( { status: "A", qty: { $lt: 30 } } )
+SELECT * FROM inventory WHERE status = "A" AND qty < 30
+
+
+db.inventory.find( { $or: [ { status: "A" }, { qty: { $lt: 30 } } ] } )
+SELECT * FROM inventory WHERE status = "A" OR qty < 30
+
+
+db.inventory.find( {
+     status: "A",
+     $or: [ { qty: { $lt: 30 } }, { item: /^p/ } ]
+} )
+SELECT * FROM inventory WHERE status = "A" AND ( qty < 30 OR item LIKE "p%")
+
+========================================================================================
+
+db.inventory.find( { status: "A" }, { item: 1, status: 1 } )
+
+SELECT item, status from inventory WHERE status = "A"
+
+
+==============================================================================
+
+db.collection.findOne
+
+(>) 大于 - $gt
+(<) 小于 - $lt
+(>=) 大于等于 - $gte
+(<= ) 小于等于 - $lte
