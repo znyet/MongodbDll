@@ -1,0 +1,12 @@
+port=27017
+dbpath=E:\mongodb-win32-x86_64-2008plus-3.4.23-mini\data
+logpath=E:\mongodb-win32-x86_64-2008plus-3.4.23-mini\log\log.txt
+logappend=true
+quiet=true
+directoryperdb=true
+#journal=true
+#auth=true
+#smallfiles=true
+#bind_ip 127.0.0.1,10.0.133.14
+bind_ip=0.0.0.0
+wiredTigerCacheSizeGB=4
