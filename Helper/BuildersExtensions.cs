@@ -18,6 +18,29 @@ namespace ZLink.Elc.Mogo.Service
             }
             return update;
         }
+
+        public static ProjectionDefinition<T> IncludeFields<T>(this ProjectionDefinitionBuilder<T> builder, string[] fields)
+        {
+            ProjectionDefinition<T> project = null;
+            foreach (var item in fields)
+            {
+                project = builder.Include(item);
+            }
+            return project;
+        }
+
+        public static ProjectionDefinition<T> ExcludeFields<T>(this ProjectionDefinitionBuilder<T> builder, string[] fields)
+        {
+            ProjectionDefinition<T> project = null;
+            foreach (var item in fields)
+            {
+                project = builder.Exclude(item);
+            }
+            return project;
+        }
+
+       
+
     }
 }
 
@@ -27,4 +50,30 @@ namespace ZLink.Elc.Mogo.Service
 //    var update = Builders<DeviceCol>.Update.SetFields(dict);
 //    var result = col.UpdateOne(w => w.Id == id, update);
 //        return result.ModifiedCount;
+//}  
+
+
+//public PageEntity<DeviceCol> GetPage(int page, int limit, DeviceCol queryModel)
+//{
+//    var where = new List<FilterDefinition<DeviceCol>>() { Builders<DeviceCol>.Filter.Empty };
+//        if (!string.IsNullOrEmpty(queryModel.Id)) //设备id
+//    {
+//        where.Add(Builders<DeviceCol>.Filter.Where(w => w.Id == queryModel.Id));
+//    }
+
+//    if (!string.IsNullOrEmpty(queryModel.Name))
+//    {
+//        where.Add(Builders<DeviceCol>.Filter.Where(w => w.Name.Contains(queryModel.Name)));
+//    }
+
+//    var filter = Builders<DeviceCol>.Filter.And(where);
+
+//    var col = GetCollection<DeviceCol>(Name);
+
+//    var total = col.CountDocuments(filter);
+//    var skip = GetSkip(page, limit);
+//    var pro = Builders<DeviceCol>.Projection.IncludeFields(new string[] { "Id" });
+//    var data = col.Find(filter).Project<DeviceCol>(pro).Skip(skip).Limit(limit).ToList();
+//    var pageEntity = new PageEntity<DeviceCol> { Total = total, Data = data };
+//    return pageEntity;
 //}
